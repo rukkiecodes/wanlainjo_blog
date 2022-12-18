@@ -38,7 +38,8 @@ app.use('/auth', [
     require('./routes/auth/signup'),
     require('./routes/auth/signin'),
     require('./routes/auth/updateAvatar'),
-    require('./routes/auth/updateProfile')
+    require('./routes/auth/updateProfile'),
+    require('./routes/auth/getProfile')
 ])
 
 app.get('/', (req, res) => {
