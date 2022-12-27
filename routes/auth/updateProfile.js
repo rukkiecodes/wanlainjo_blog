@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const User = require("../../models/user")
 
-router.patch("/updateProfile", async (req, res) => {
+router.post("/updateProfile", async (req, res) => {
     const {
         email,
         name
