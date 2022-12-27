@@ -44,6 +44,8 @@ app.use('/auth', [
 
 app.use('/post', [
     require('./routes/post/addPost'),
+    require('./routes/post/getPosts'),
+    require('./routes/post/getAllPosts'),
 ])
 
 app.get('/', (req, res) => {
