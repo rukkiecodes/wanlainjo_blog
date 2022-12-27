@@ -42,6 +42,10 @@ app.use('/auth', [
     require('./routes/auth/getProfile')
 ])
 
+app.use('/post', [
+    require('./routes/post/addPost'),
+])
+
 app.get('/', (req, res) => {
     res.send('Welcome to wanlainjo blog. \n everything looks good.\n the  server is up')
 })
