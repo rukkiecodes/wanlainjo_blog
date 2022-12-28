@@ -10,9 +10,8 @@ router.post("/addPost", async (req, res) => {
     try {
         let currentUser = await User.findOne({ email })
 
-        // Upload image to cloudinary
-        let _user
-        _user = await Post.create({
+        let post
+        post = await Post.create({
             _id: new mongoose.Types.ObjectId(),
             email,
             text,
@@ -20,12 +19,15 @@ router.post("/addPost", async (req, res) => {
         })
 
         res.status(200).json({
-            message: "Avatar updated",
+            message: "Post added",
             success: true,
-            _user
+            post
         })
     } catch (err) {
-        console.log(err)
+        res.status(400).json({
+            message: "Failed to add post",
+            success: false
+        })
     }
 })
 
