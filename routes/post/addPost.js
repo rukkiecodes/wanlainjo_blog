@@ -6,10 +6,12 @@ const mongoose = require("mongoose")
 const Post = require("../../models/post")
 const User = require("../../models/user")
 
-router.post("/addPost", upload.single("avatar"), async (req, res) => {
+router.post("/addPost", upload.single("post"), async (req, res) => {
     const { email, text } = req.body
 
     try {
+        let currentUser = await User.findOne({ email })
+
         // Upload image to cloudinary
         const result = await cloudinary.uploader.upload(req.file.path, {
             folder: process.env.CLOUDINARY_FOLDER,
@@ -20,7 +22,8 @@ router.post("/addPost", upload.single("avatar"), async (req, res) => {
             _id: new mongoose.Types.ObjectId(),
             email,
             text,
-            photoURL: result.secure_url
+            photoURL: result.secure_url,
+            currentUser: JSON.stringify(currentUser),
         })
 
         res.status(200).json({
