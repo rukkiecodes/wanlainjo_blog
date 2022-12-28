@@ -5,7 +5,7 @@ const Post = require("../../models/post")
 const User = require("../../models/user")
 
 router.post("/addPost", async (req, res) => {
-    const { email, text } = req.body
+    const { email, text, title } = req.body
 
     try {
         let currentUser = await User.findOne({ email })
@@ -15,6 +15,7 @@ router.post("/addPost", async (req, res) => {
             _id: new mongoose.Types.ObjectId(),
             email,
             text,
+            title,
             currentUser: JSON.stringify(currentUser),
         })
 
